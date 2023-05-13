@@ -1,0 +1,7 @@
+// flex (column or row)
+@mixin flex($direction, $justify, $align) {
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  display: flex;
+}

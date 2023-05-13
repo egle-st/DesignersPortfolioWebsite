@@ -36,3 +36,23 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## ADDITIONAL NOTES:
+
+To see the full design with your own pictures:
+create data folder and data.json with information:
+{
+"projects": [
+{
+"id": "string",
+"title": "string",
+"image": "/images/someImageName.png",
+"text": "string",
+"bottom-text": "string"
+},
+
+]
+}
+
+For this data - "image" file path explanation: in index.tsx file Image component src={} begins automatically from root public folder, that's why image path begins with /images,
+and not public. Images folder should be inside public folder.

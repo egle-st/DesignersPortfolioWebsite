@@ -1,0 +1,38 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+}
+
+.home-image {
+  object-fit: contain;
+  margin-top: 5rem;
+}
+.header-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-bottom: 5rem;
+}
+.designs {
+  margin-top: 100rem;
+  margin-bottom: 10rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  left: 25rem;
+  right: 25rem;
+}
+.design-link {
+  flex-basis: 33%;
+}
+.page-footer {
+  margin-top: 15rem;
+  margin-bottom: 10rem;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+}
