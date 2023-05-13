@@ -41,6 +41,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 To see the full design with your own pictures:
 create data folder and data.json with information:
+
+```bash
 {
 "projects": [
 {
@@ -53,6 +55,7 @@ create data folder and data.json with information:
 
 ]
 }
+```
 
 For this data - "image" file path explanation: in index.tsx file Image component src={} begins automatically from root public folder, that's why image path begins with /images,
 and not public. Images folder should be inside public folder.
