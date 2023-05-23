@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from 'react';
 import { FaInstagram, FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
-import { HiBars3 } from 'react-icons/hi2';
-import { AiOutlineClose } from 'react-icons/ai';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
+import { lato } from '../../../fonts';
 
 import styles from './Header.module.scss';
 
@@ -22,6 +22,8 @@ export const Header: FC<HeaderProps> = ({ links }) => {
   const [scrollDirection, setScrollDirection] = useState('up');
   const [hamburgerButton, setHamburgerButton] = useState(true);
   const [menuIsOpen, setMenuToOpen] = useState(false);
+
+  const router = useRouter();
 
   // mobile hamburger button and menu state change:
   const handleHambugerButton = () => {
@@ -61,7 +63,13 @@ export const Header: FC<HeaderProps> = ({ links }) => {
             link.path === '/about' || link.path === '/contact'
         )
         .map((link: LinksInfo) => (
-          <Link key={link.id} href={link.path} className={styles.link}>
+          <Link
+            key={link.id}
+            href={link.path}
+            className={`${styles.link} ${
+              router.asPath === link.path ? styles.active : ''
+            }`}
+          >
             {link.title}
           </Link>
         ));
@@ -72,11 +80,15 @@ export const Header: FC<HeaderProps> = ({ links }) => {
   const bottomLinksMap = () => {
     {
       const bottomLinks = links
-        .filter(
-          (link: LinksInfo) => link.path === '/work' || link.path === '/shop'
-        )
+        .filter((link: LinksInfo) => link.path === '/' || link.path === '/shop')
         .map((link: LinksInfo) => (
-          <Link key={link.id} href={link.path} className={styles.link}>
+          <Link
+            key={link.id}
+            href={link.path}
+            className={`${styles.link} ${
+              router.asPath === link.path ? styles.active : ''
+            }`}
+          >
             {link.title}
           </Link>
         ));
@@ -92,7 +104,7 @@ export const Header: FC<HeaderProps> = ({ links }) => {
       data-testid={menuIsOpen ? 'open-menu' : ''}
     >
       <nav className={styles.navigation}>
-        <div className={styles.links}>
+        <div className={`${styles.links} ${lato.variable}`}>
           <div className={styles['links-top']}>{topLinksMap()}</div>
           <div className={styles['links-bottom']}>{bottomLinksMap()}</div>
         </div>
@@ -130,19 +142,18 @@ export const Header: FC<HeaderProps> = ({ links }) => {
             <FaEnvelope />
           </Link>
         </div>
-        <button
+        <div
           onClick={handleHambugerButton}
-          className={styles['btn-burger']}
+          className={`${styles['btn-burger']} ${
+            !menuIsOpen ? '' : styles['x-menu']
+          }`}
+          role='button'
+          aria-label='Menu button'
           data-testid='btn-burger'
         >
-          {menuIsOpen ? (
-            <AiOutlineClose className={styles['hamburger-menu']} />
-          ) : (
-            <HiBars3
-              className={`${styles['hamburger-menu']} ${styles['x-menu']}`}
-            />
-          )}
-        </button>
+          {' '}
+          <div className={styles['hamburger-menu']}></div>
+        </div>
         <hr className={styles.line} />
       </nav>
     </header>

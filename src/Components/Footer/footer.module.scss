@@ -1,0 +1,15 @@
+@use '../../styles/variables.module.scss' as vars;
+@use '../../styles/mixins.scss' as mixins;
+
+.page-footer {
+  font-size: vars.$size-xs;
+  display: flex;
+  justify-content: center;
+  background-color: vars.$blue-17-8;
+  padding: vars.$size-m 0;
+  margin-top: vars.$size-l;
+  color: #fff;
+  box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.3);
+  font-family: var(--font-amarante);
+  width: 100%;
+}

@@ -3,7 +3,8 @@
 
 .hidden {
   transition: top 0.6s ease-in-out;
-  top: -8.5rem;
+  top: -100%;
+  position: fixed;
 }
 
 .visible {
@@ -19,7 +20,7 @@
 .navigation {
   @include mixins.flex(row, space-around, center);
   z-index: 999;
-  background-color: vars.$white-grey-970;
+  background-color: vars.$white;
   padding: vars.$size-xxs;
   font-size: vars.$size-xs;
   color: vars.$grey-220;
@@ -29,10 +30,16 @@
 .links {
   display: flex;
   flex-direction: column;
+  font-family: var(--font-lato);
+  font-weight: 500;
+  font-size: 1.8rem;
 }
 .links-top,
 .links-bottom {
   display: flex;
+}
+.active {
+  font-weight: bold;
 }
 
 .link {
@@ -46,27 +53,15 @@
 
 .logo-image {
   object-fit: contain;
+  margin-right: 20rem;
 }
 .social-media {
-  margin-right: vars.$size-l;
   display: flex;
 }
 
 .social {
   padding: vars.$size-xxs;
   transition: 0.2s ease-in;
-}
-
-.hamburger-menu {
-  display: none;
-  position: absolute;
-  left: vars.$size-l;
-  top: vars.$size-s;
-  width: vars.$size-m;
-  height: vars.$size-m;
-  opacity: 1;
-  transition: opacity 2s ease-out;
-  color: vars.$grey-220;
 }
 
 .btn-burger {
@@ -80,13 +75,50 @@
 @media screen and (max-width: 800px) {
   .btn-burger {
     display: block;
+    position: absolute;
+    left: 3.5rem;
+    top: 4.5rem;
   }
+
+  .btn-burger.x-menu .hamburger-menu {
+    background: transparent;
+  }
+
+  .btn-burger.x-menu .hamburger-menu::before {
+    transform: translateX(2.5rem);
+    transform: translateY(-2.5rem);
+    transform: rotate(43deg);
+  }
+
+  .btn-burger.x-menu .hamburger-menu::after {
+    transform: translateX(2.5rem);
+    transform: translateY(2.5rem);
+    transform: rotate(-43deg);
+  }
+
   .hamburger-menu {
-    display: block;
+    width: 2.5rem;
+    height: 0.2rem;
+    border-radius: vars.$size-xs;
+    transition: all 0.2s ease-in-out;
+    background-color: vars.$grey-220;
   }
-  .x-menu {
-    z-index: 1;
+  .hamburger-menu::before,
+  .hamburger-menu::after {
     display: block;
+    content: '';
+    position: absolute;
+    width: 2.5rem;
+    height: 0.2rem;
+    border-radius: vars.$size-xs;
+    transition: all 0.2s ease-in-out;
+    background-color: vars.$grey-220;
+  }
+  .hamburger-menu::before {
+    transform: translateY(-0.8rem);
+  }
+  .hamburger-menu::after {
+    transform: translateY(0.8rem);
   }
 
   .open-menu {

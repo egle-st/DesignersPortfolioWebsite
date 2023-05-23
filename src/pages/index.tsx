@@ -1,11 +1,14 @@
 import { Inter } from 'next/font/google';
 import { Header } from '../Components/Header/Header';
+import { Footer } from '../Components/Footer/Footer';
 import { FC } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 const inter = Inter({ subsets: ['latin'] });
 import LinksData from '../../data/data.json';
+import { HeaderImageText } from '@Components/Components/HeaderImageText/HeaderImageText';
+import { lato, amarante } from '../../fonts';
 
 import styles from '@Components/styles/Home.module.scss';
 
@@ -36,39 +39,48 @@ const Home: FC<Props> = ({ data }) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header links={linksInfo} />
-      <main className={styles.main}>
+      <main className={`${styles.main} ${lato.variable}`}>
         <Image
           alt={'design-photo'}
           src={'/images/138.png'}
-          width={1905}
-          height={824}
-          style={{ width: '100vw', height: '75vh' }}
+          width={1490}
+          height={750}
+          style={{ width: '100vw', height: '80vh' }}
           className={styles['header-image']}
         />
+        <HeaderImageText />
         <div className={styles.designs}>
           {data.map((project) => {
             return (
-              <Link
-                key={project.id}
-                href={`/work/${project.id}`}
-                className={styles['design-link']}
-              >
-                <Image
-                  alt={project.id}
-                  src={project.image}
-                  width={413}
-                  height={232}
-                  className={styles['home-image']}
-                />
-                <h2> {project.title}</h2>
-              </Link>
+              <div key={project.id} className={styles['design-item']}>
+                <Link
+                  key={project.id}
+                  href={`/work/${project.id}`}
+                  className={styles['design-link']}
+                >
+                  <div className={styles['image-container']}>
+                    <div className={styles.title}>{project.title}</div>
+                    <Image
+                      alt={project.id}
+                      src={project.image}
+                      width={370}
+                      height={200}
+                      style={{ width: '100%', height: '100%' }}
+                      className={styles['home-image']}
+                    />
+                    <div className={styles.overlay}></div>
+                  </div>
+                </Link>
+              </div>
             );
           })}
         </div>
       </main>
-      <footer className={styles['page-footer']}>
-        <p>Akve_Design 2023</p>
-      </footer>
+      <Footer
+        className='page-footer'
+        content='© Akve_Design 2023'
+        fontFamily={`${amarante.variable}`}
+      />
     </>
   );
 };

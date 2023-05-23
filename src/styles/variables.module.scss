@@ -2,12 +2,24 @@
 
 //light colors
 $white-grey-970: rgb(248, 248, 248);
+$white: rgb(255, 255, 255);
+
+$yellow-grey: rgb(255, 249, 223);
+$yellow-gold: rgb(252, 202, 91);
 
 //dark colors
 $grey-750: rgb(196, 187, 187);
+$grey-660: rgb(169, 169, 169);
+$grey-600: rgb(153, 153, 153);
 $grey-500: rgb(128, 128, 128);
 $grey-390: rgb(100, 97, 97);
 $grey-220: rgb(56, 56, 56);
+
+$blue-17: #003e59;
+$blue-17-8: rgb(19, 45, 72);
+$blue-8: rgb(0, 27, 39);
+
+$black: rgb(0, 0, 0);
 
 /***************************** SPACING *******************/
 
@@ -17,5 +29,3 @@ $size-xs: 2rem;
 $size-s: 3rem;
 $size-m: 4rem;
 $size-l: 5rem;
-
-/******************* FONTS *****************/

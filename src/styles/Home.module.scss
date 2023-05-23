@@ -1,38 +1,124 @@
+@use '../styles/variables.module.scss' as vars;
+@use '../styles/mixins.scss' as mixins;
+
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  padding: 6rem;
+  width: 100vw;
 }
 
-.home-image {
-  object-fit: contain;
-  margin-top: 5rem;
-}
 .header-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-bottom: 5rem;
+  margin-bottom: 18rem;
 }
+
 .designs {
-  margin-top: 100rem;
-  margin-bottom: 10rem;
-  display: flex;
+  @include mixins.flex(row, center, center);
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  left: 25rem;
-  right: 25rem;
+  width: 65%;
+  margin-bottom: 12rem;
+  flex-basis: 33.3%;
+}
+
+.design-item {
+  flex-basis: 33.33%;
 }
 .design-link {
-  flex-basis: 33%;
+  @include mixins.flex(column, center, center);
 }
-.page-footer {
-  margin-top: 15rem;
-  margin-bottom: 10rem;
-  font-size: 2rem;
+
+.image-container {
+  max-width: 41.3rem;
+  max-height: 23.2rem;
+  overflow: hidden;
+  margin-top: 1rem;
+  box-shadow: 0 0.2rem 0.6rem rgba(vars.$black, 0.3);
+  transition: transform 0.4s ease-in-out;
+  position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  transform: scale(0.96);
+}
+.image-container:hover {
+  transform: scale(1);
+}
+.image-container:hover .home-image {
+  filter: grayscale(0);
+}
+.image-container:hover .overlay {
+  display: none;
+}
+.image-container:hover .title {
+  display: block;
+}
+
+.title {
+  position: absolute;
+  z-index: 1;
+  font-size: 1.9rem;
+  background-color: rgba(vars.$blue-8, 0.4);
+  color: vars.$white;
+  width: 25rem;
+  text-align: center;
+  font-weight: 600;
+  margin: 0 auto;
+  align-self: center;
+  overflow: hidden;
+  padding: vars.$size-xs vars.$size-xxs;
+  display: none;
+  font-family: var(--font-lato);
+}
+.home-image {
+  object-fit: cover;
+  position: relative;
+  top: 0;
+  left: 0;
+  border-radius: 0.4rem;
+  transition: all 0.1s ease-in;
+  filter: grayscale(100%);
+  overflow: hidden;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  background: vars.$blue-17;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  transition: 0.2s ease;
+  opacity: 0.2;
+  content: '';
+  z-index: 998;
+}
+
+//tablets 769px-1024px
+@media screen and (max-width: 1024px) {
+  .designs {
+    width: 75%;
+  }
+  .design-item {
+    flex-basis: 50%;
+  }
+  .image-container {
+    max-width: 45rem;
+    max-height: 29rem;
+  }
+}
+
+//phones max 768px
+@media screen and (max-width: 768px) {
+  .designs {
+    width: 80%;
+  }
+  .design-item {
+    flex-basis: 100%;
+  }
+  .image-container {
+    max-width: 48rem;
+    max-height: 28rem;
+  }
 }

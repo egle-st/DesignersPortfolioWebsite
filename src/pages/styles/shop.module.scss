@@ -1,0 +1,8 @@
+@use '../../styles/mixins.scss' as mixins;
+
+.shop-page {
+  @include mixins.flex(column, center, center);
+  margin-top: 16rem;
+  margin-left: 0;
+  padding: 0;
+}
